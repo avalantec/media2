@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_users_form_saml" model="ir.ui.view">
+            <field name="name">res.users.form.inherit.saml</field>
+            <field name="model">res.users</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='access_rights']" position="after">
+                    <page string="SAML" name="saml">
+                        <group>
+                            <field name="saml_provider_id"/>
+                            <field name="saml_uid"/>
+                            <field name="saml_access_token"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+</odoo>

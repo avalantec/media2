@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<odoo>
+
+        <record id="view_saml_provider_form" model="ir.ui.view">
+            <field name="name">auth.saml.provider.form</field>
+            <field name="model">auth.saml.provider</field>
+            <field name="arch" type="xml">
+                <form string="arch">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="s_issuer_url" />
+                            <field name="s_version" />
+                            <field name="s_provider_name" help="Specifies the human-readable name of the requester for use by the presenter's user agent or the identity provider."/>
+                            <field name="s_destination_url" help="A URI reference indicating the address to which this response has been sent. This is useful to prevent malicious forwarding of responses to unintended recipients, a protection that is required by some protocol bindings. If it is present, the actual recipient MUST check that the URI reference identifies the location at which the message was received. If it does not, the response MUST be discarded. Some protocol bindings may require the use of this attribute (see [SAMLBind])."/>
+                            <!-- <field name="saml_endpoint_url" /> -->
+                            <field name="s_slo_url" />
+                            
+                            <field name="s_protocol_binding" help="A URI reference that identifies a SAML protocol binding to be used when returning the &lt;Response&gt; message. See [SAMLBind] for more information about protocol bindings and URI references defined for them. This attribute is mutually exclusive with the AssertionConsumerServiceIndex attribute and is typically accompanied by the AssertionConsumerServiceURL attribute."/>
+                            <field name="s_acs_url" />
+                            <field name="s_policy_format" />
+                            <field name="s_authncontextclassref" />
+                            
+                            
+                            <field name="client_id" />
+                            <field name="enabled" />
+                            <field name="body" />
+                            <field name="css_class" groups="base.group_no_one" />
+                        </group>
+                        <group>
+                            <field name="auth_endpoint" />
+                            <field name="scope" />
+                            <field name="validation_endpoint" />
+                            <field name="saml_validation_endpoint" />
+                            <field name="data_endpoint" />
+                            <field name="saml_data_endpoint" />
+                        </group>
+                        <group>
+                            <group>
+                                <field name="image" widget="image"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_saml_provider_tree" model="ir.ui.view">
+            <field name="name">auth.saml.provider.tree</field>
+            <field name="model">auth.saml.provider</field>
+            <field name="arch" type="xml">
+                <tree string="arch">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name" />
+                    <field name="client_id" />
+                    <field name="enabled" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_saml_provider" model="ir.actions.act_window">
+            <field name="name">SAML Providers</field>
+            <field name="res_model">auth.saml.provider</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_saml_providers" name="SAML Providers"
+            parent="base.menu_users" sequence="31"
+            action="action_saml_provider" groups="base.group_no_one"/>
+</odoo>
